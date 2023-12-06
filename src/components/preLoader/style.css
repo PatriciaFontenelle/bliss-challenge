@@ -1,0 +1,9 @@
+.pre-loader-container {
+    width: 100dvw;
+    height: 100dvh;
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

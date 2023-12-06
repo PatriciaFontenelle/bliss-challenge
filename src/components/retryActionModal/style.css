@@ -1,0 +1,12 @@
+.retry-modal-container {
+    width: 250px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.retry-modal-text {
+    text-align: center;
+}
