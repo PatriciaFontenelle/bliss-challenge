@@ -1,0 +1,35 @@
+.search-box-container {
+  background-color: #fff;
+  padding: 0.5em 1em;
+  border-radius: 20px;
+  position: relative;
+  width: fit-content;
+}
+
+.search-input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  width: 250px;
+  margin-right: 35px;
+}
+
+.search-input:focus {
+  border-bottom: 1px solid rgba(1, 22, 56, 0.4);
+}
+
+.search-box-container button {
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 20px 20px 0;
+  background-color: #011638;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 40px;
+  cursor: pointer;
+}

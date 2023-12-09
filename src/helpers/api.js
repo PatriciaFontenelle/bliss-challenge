@@ -21,3 +21,21 @@ export const listQuestions = (limit, offset, filter) => {
     })
     .catch((error) => console.error(error));
 };
+
+export const getQuestion = (id) => {
+  return axios
+    .get(`${baseUrl}/questions/${id}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((error) => console.error(error));
+};
+
+export const shareList = (email, url) => {
+  return axios
+    .post(`${baseUrl}/share?destination_email=${email}&content_url=${url}`)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((error) => console.error(error));
+};

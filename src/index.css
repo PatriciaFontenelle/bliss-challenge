@@ -15,14 +15,38 @@ code {
     monospace;
 }
 
-button {
-  padding: 0.5em 1.25em;
+::-webkit-scrollbar {
+  width: 5px;
 }
 
-.icon-btn {
+::-webkit-scrollbar-track {
   background-color: transparent;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
 }
+
+::-webkit-scrollbar-thumb {
+  background-color: #364156;
+  border-radius: 10px;
+}
+
+.input-control {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+.input-control label {
+  font-size: .75em;
+  font-weight: 600;
+}
+
+.input-control input {
+  padding: .5em .75em;
+  outline: none;
+  border: 1px solid rgba(1, 22, 56, 0.4);
+  border-radius: 5px;
+}
+
+.input-control input:focus {
+  border: 1px solid rgba(1, 22, 56, 1);;
+}
+

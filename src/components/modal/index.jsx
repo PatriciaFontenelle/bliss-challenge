@@ -1,23 +1,42 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import ReactDom from "react-dom";
+import Button from "../customButton";
+import { MdOutlineClose } from "react-icons/md";
+
 import "./style.css";
 
 const Modal = ({ children, show, onClose, title, closable = true }) => {
+  const modalRef = useRef();
+
+  useEffect(() => {
+    document.addEventListener("mousedown", (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        onClose();
+      }
+    });
+
+    return document.removeEventListener("click", () =>
+      console.log("Listener removed.")
+    );
+  }, [onClose]);
+
   if (!show) return;
 
   return ReactDom.createPortal(
     <>
       <div className="modal-bg"></div>
-      <div className="modal-container">
+      <div className="modal-container" ref={modalRef}>
         {/* HEADER */}
         {(title || closable) && (
           <>
             <div className="modal-header">
               {title && <div className="modal-title">{title}</div>}
               {closable && (
-                <button className="icon-btn" onClick={onClose}>
-                  X
-                </button>
+                <Button
+                  onClick={onClose}
+                  type="icon"
+                  icon={<MdOutlineClose size={20} />}
+                />
               )}
             </div>
             <hr />

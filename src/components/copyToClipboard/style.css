@@ -1,0 +1,27 @@
+.copy-clipboard-container label {
+    font-size: .75em;
+    font-weight: 600;
+}
+
+.copy-clipboard-btn {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: .5em .75em;
+    background-color: #CDCDCD;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.copy-clipboard-container input {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
