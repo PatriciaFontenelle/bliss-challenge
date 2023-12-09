@@ -5,10 +5,8 @@ import { shareList } from "../../helpers/api";
 import "./style.css";
 import CopyToClipboard from "../copyToClipboard";
 
-const ShareModal = ({ show, filter, onClose }) => {
+const ShareModal = ({ show, onClose, url }) => {
   const [email, setEmail] = useState("");
-
-  const url = `${window.location.href}?filter=${filter}`;
   
   const share = () => {
     shareList(email, url).then(() => onClose());

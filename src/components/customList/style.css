@@ -63,6 +63,10 @@
   font-weight: 600;
 }
 
+.loading-list-info {
+  height: 100%;
+}
+
 .loading-list-item {
   height: 200px;
   padding: 10px;

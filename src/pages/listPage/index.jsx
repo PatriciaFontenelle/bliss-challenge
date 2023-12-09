@@ -54,6 +54,7 @@ const ListPage = () => {
       <ShareModal
         show={showShareModal}
         onClose={() => setShowShareModal(false)}
+        url={`${window.location.href}?filter=${searchStr.toLocaleLowerCase()}`}
       />
       <div className="list-page-toolbar">
         <div className="list-page-toolbar-right">

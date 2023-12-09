@@ -41,13 +41,21 @@ const CustomList = ({ listItems, onScroll, loading, listEnded }) => {
   return (
     <div className="custom-list-container" id="custom-list">
       {listItems.length == 0 ? (
-        <div className="empty-list">
-          <FaBoxOpen size={70} />
-          <div className="empty-list-message">
-            <h3>No Results</h3>
-            <span>The list is empty. </span>
-          </div>
-        </div>
+        <>
+          {loading ? (
+            <div className="loading-list-info">
+              <Loading text />
+            </div>
+          ) : (
+            <div className="empty-list">
+              <FaBoxOpen size={70} />
+              <div className="empty-list-message">
+                <h3>No Results</h3>
+                <span>The list is empty. </span>
+              </div>
+            </div>
+          )}
+        </>
       ) : (
         <>
           {listItems.map((item, index) => {

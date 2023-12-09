@@ -39,3 +39,11 @@ export const shareList = (email, url) => {
     })
     .catch((error) => console.error(error));
 };
+
+export const updateQuestion = (id, data) => {
+  return axios.put(`${baseUrl}/questions/${id}`, data)
+  .then((res) => {
+    return
+  })
+  .catch((error) => console.log(error))
+};
