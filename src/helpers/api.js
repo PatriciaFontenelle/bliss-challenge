@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://private-bbbe9-blissrecruitmentapi.apiary-mock.com/";
+const baseUrl = "https://private-bbbe9-blissrecruitmentapi.apiary-mock.com";
 
 export const getHealth = () => {
   return axios

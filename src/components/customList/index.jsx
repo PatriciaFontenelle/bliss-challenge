@@ -1,7 +1,6 @@
-import { useEffect, useRef, forwardRef, useCallback } from "react";
+import { useRef, forwardRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaBoxOpen } from "react-icons/fa";
-import LoadingSpinner from "../../assets/img/Spinner.svg";
 
 import "./style.css";
 import Loading from "../loading";

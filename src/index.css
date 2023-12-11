@@ -8,6 +8,7 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 code {
@@ -17,6 +18,7 @@ code {
 
 ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -35,18 +37,23 @@ code {
 }
 
 .input-control label {
-  font-size: .75em;
+  font-size: 0.75em;
   font-weight: 600;
 }
 
 .input-control input {
-  padding: .5em .75em;
+  padding: 0.5em 0.75em;
   outline: none;
   border: 1px solid rgba(1, 22, 56, 0.4);
   border-radius: 5px;
 }
 
 .input-control input:focus {
-  border: 1px solid rgba(1, 22, 56, 1);;
+  border: 1px solid rgba(1, 22, 56, 1);
 }
 
+.input-control-error {
+  font-size: 0.75em;
+  font-weight: bold;
+  color: red;
+}

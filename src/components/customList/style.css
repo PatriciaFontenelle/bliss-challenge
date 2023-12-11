@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: center;
   height: 200px;
-  color: rgba(1, 22, 56, 0.6);;
+  color: rgba(1, 22, 56, 0.6);
 }
 
 .empty-list-message {
@@ -22,7 +22,7 @@
   margin-top: 7px;
 }
 
-.empty-list-message h3{
+.empty-list-message h3 {
   line-height: 20px;
 }
 
@@ -33,6 +33,8 @@
   display: flex;
   gap: 15px;
   cursor: pointer;
+  width: 100%;
+  min-width: fit-content;
 }
 
 .custom-list-item:hover {
@@ -56,6 +58,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  text-wrap: nowrap;
 }
 
 .question-id {
@@ -78,4 +81,10 @@
   color: rgba(1, 22, 56, 0.4);
   display: flex;
   justify-content: center;
+}
+
+@media screen and (max-width: 650px) {
+  .custom-list-container {
+    height: calc(100% - 90px);
+  }
 }

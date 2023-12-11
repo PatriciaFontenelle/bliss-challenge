@@ -45,7 +45,7 @@ const Button = ({
   };
 
   return (
-    <button {...rest} style={typeStyle[type]} className="custom-btn">
+    <button {...rest} style={typeStyle[type]} className={`${rest.className || ""} custom-btn`}>
       {icon && iconPlacement === "start" && icon}
       {text}
       {icon && iconPlacement === "end" && icon}

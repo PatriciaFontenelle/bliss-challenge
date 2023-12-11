@@ -1,5 +1,7 @@
 .details-page-container {
   width: 100%;
+  overflow: auto;
+  padding-right: 2px;
 }
 
 .details-title {

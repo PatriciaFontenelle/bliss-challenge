@@ -1,8 +1,11 @@
 import { MdOutlineSearch } from "react-icons/md";
-import "./style.css";
 import { useEffect, useRef } from "react";
+import { useQuestions } from "../../contexts/QuestionsContext";
 
-const SearchBox = ({ onChange, onFilter, inputValue = "", focused }) => {
+import "./style.css";
+
+const SearchBox = ({ onFilter, focused }) => {
+  const { filter, setFilter } = useQuestions();
   const inputRef = useRef();
 
   useEffect(() => {
@@ -21,8 +24,8 @@ const SearchBox = ({ onChange, onFilter, inputValue = "", focused }) => {
         ref={inputRef}
         className="search-input"
         placeholder="Search"
-        onChange={onChange}
-        value={inputValue}
+        onChange={(e) => setFilter(e.target.value)}
+        value={filter}
         onKeyUp={(e) => onKeyUp(e)}
       />
       <button onClick={onFilter}>
