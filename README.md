@@ -4,3 +4,5 @@ For this challenge I used Vite + React in order to make the app more efficient. 
 - Run **npm i** to install the dependecies;
 - Run **npm run dev** to run the app;
 
+Node Version: 18.12.0
+
