@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { listQuestions } from "../../helpers/api";
 import CustomList from "../../components/customList";
 import { MdShare } from "react-icons/md";
-import { useLocation } from "react-router-dom";
-import { useQuestions } from "../../contexts/QuestionsContext";
+import { useLocation, useLoaderData, useSearchParams } from "react-router-dom";
 import SearchBox from "../../components/searchBox";
 import ShareModal from "../../components/shareModal";
 import Button from "../../components/customButton";
@@ -19,41 +18,48 @@ const ListPage = () => {
   const [offset, setOffset] = useState(0);
   const [searchBoxFocused, setSearchBoxFocused] = useState(false);
   const [listEnded, setListEnded] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const location = useLocation();
+  const firstUpdate = useRef(true);
+  const urlFilter = useLoaderData();
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const filter = searchParams.get("filter");
-
-    if (!filter && filter !== null) {
-      setSearchBoxFocused(true);
-      setFilterMode(true);
-    } else if (filter) {
-      setSearchStr(filter);
-    }
+    getQuestions();
   }, []);
 
   useEffect(() => {
-    setOffset(0);
-    setListItems([]);
-
-    if (searchStr !== "") {
-      setFilterMode(true);
-    } else {
+    if (searchStr === "") {
       setFilterMode(false);
+    } else {
+      setFilterMode(true);
     }
+    setSearchParams(`filter=${searchStr}`);
   }, [searchStr]);
 
   useEffect(() => {
-    if (listItems.length === 0) {
+    if (firstUpdate.current) {
+      if (!urlFilter && urlFilter !== null) {
+        setFilterMode(true);
+        setSearchBoxFocused(true);
+      } else if (urlFilter) {
+        setFilterMode(true);
+        setSearchStr(urlFilter);
+      }
+      firstUpdate.current = false;
+      return;
+    }
+
+    if (!firstUpdate.current && listItems.length === 0) {
       getQuestions();
     }
   }, [listItems]);
 
   const getQuestions = () => {
     setLoading(true);
-    const filter = searchStr.toLocaleLowerCase();
+    const filter = firstUpdate.current
+      ? urlFilter?.toLocaleLowerCase() || ""
+      : searchStr.toLocaleLowerCase();
     listQuestions(10, offset, filter).then((res) => {
       setListItems((prev) => prev.concat(res));
       setOffset((prev) => prev + 10);
@@ -62,29 +68,27 @@ const ListPage = () => {
     });
   };
 
+  const onFilter = () => {
+    setOffset(0);
+    setListEnded(false);
+    setListItems([]);
+  };
+
   return (
     <div className="list-page-container">
       <ShareModal
         show={showShareModal}
         onClose={() => setShowShareModal(false)}
-        url={`${window.location.href}?filter=${searchStr.toLocaleLowerCase()}`}
+        url={window.location.href}
       />
       <div className="list-page-toolbar">
         <div className="list-page-toolbar-left">
           <SearchBox
             onChange={(e) => setSearchStr(e.target.value)}
-            onFilter={() => getQuestions()}
+            onFilter={() => onFilter()}
             inputValue={searchStr}
             focused={searchBoxFocused}
           />
-          {filterMode && (
-            <Button
-              className="clear-search-btn-desktop"
-              onClick={() => setSearchStr("")}
-              text="Clear Search"
-              type="link"
-            />
-          )}
         </div>
         <div className="list-page-toolbar-right">
           {filterMode && (
@@ -97,8 +101,11 @@ const ListPage = () => {
                 iconPlacement="end"
               />
               <Button
-                className="clear-search-btn-mobile"
-                onClick={() => setSearchStr("")}
+                className="clear-search-btn"
+                onClick={() => {
+                  setSearchStr("");
+                  onFilter();
+                }}
                 text="Clear Search"
                 type="link"
               />
@@ -117,3 +124,10 @@ const ListPage = () => {
 };
 
 export default ListPage;
+
+export const questionsLoader = () => {
+  const searchParams = new URLSearchParams(location.search);
+  const filter = searchParams.get("filter");
+
+  return filter;
+};

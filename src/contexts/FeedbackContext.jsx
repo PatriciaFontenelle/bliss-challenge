@@ -1,27 +1,15 @@
 import { createContext, useEffect, useState, useContext } from "react";
 import NoConnection from "../components/noConnection";
-import { getHealth } from "../helpers/api";
 import Message from "../components/message";
-import PreLoader from "../components/preLoader";
-import { useLocation } from "react-router-dom";
 
-const QuestionsContext = createContext();
+const FeedbackContext = createContext();
 
-export const QuestionsProvider = ({ children }) => {
-  const [loading, setLoading] = useState(true);
-  const [questionsList, setQuestionsList] = useState([]);
-  const [filter, setFilter] = useState("");
+export const FeedbackProvider = ({ children }) => {
   const [isConnected, setIsConnected] = useState(navigator.onLine);
   const [showMessage, setShowMessage] = useState(false);
   const [messageData, setMessageData] = useState({});
-  const location = useLocation();
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const filterParam = searchParams.get("filter");
-
-    setFilter(filterParam);
-
     window.addEventListener("online", () => {
       setIsConnected(true);
     });
@@ -37,14 +25,8 @@ export const QuestionsProvider = ({ children }) => {
   }, []);
 
   return (
-    <QuestionsContext.Provider
+    <FeedbackContext.Provider
       value={{
-        loading,
-        setLoading,
-        filter,
-        setFilter,
-        questionsList,
-        setQuestionsList,
         setShowMessage,
         setMessageData,
       }}
@@ -66,11 +48,11 @@ export const QuestionsProvider = ({ children }) => {
       ) : (
         <NoConnection />
       )}
-    </QuestionsContext.Provider>
+    </FeedbackContext.Provider>
   );
 };
 
-export const useQuestions = () => {
-  const context = useContext(QuestionsContext);
+export const useFeedback = () => {
+  const context = useContext(FeedbackContext);
   return { ...context };
 };

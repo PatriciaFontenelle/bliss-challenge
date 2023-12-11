@@ -5,12 +5,12 @@ import { shareList } from "../../helpers/api";
 import "./style.css";
 import CopyToClipboard from "../copyToClipboard";
 import { validateEmail } from "../../helpers/utils";
-import { useQuestions } from "../../contexts/QuestionsContext";
+import { useFeedback } from "../../contexts/FeedbackContext";
 
 const ShareModal = ({ show, onClose, url }) => {
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { setShowMessage, setMessageData } = useQuestions();
+  const { setShowMessage, setMessageData } = useFeedback();
   const emailInputRef = useRef();
 
   const handleValidation = () => {

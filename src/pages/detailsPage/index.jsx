@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getQuestion, updateQuestion } from "../../helpers/api";
 import { formatDate } from "../../helpers/utils";
 import { MdShare } from "react-icons/md";
-import { useQuestions } from "../../contexts/QuestionsContext";
+import { useFeedback } from "../../contexts/FeedbackContext";
 import Button from "../../components/customButton";
 import ShareModal from "../../components/shareModal";
 import Modal from "../../components/modal";
@@ -18,7 +18,7 @@ const DetailsPage = () => {
   const [selectedChoice, setSelectedChoice] = useState({});
   const [showShareModal, setShowShareModal] = useState(false);
   const { id } = useParams();
-  const {setShowMessage, setMessageData} = useQuestions();
+  const {setShowMessage, setMessageData} = useFeedback();
   const navigate = useNavigate();
 
   useEffect(() => {

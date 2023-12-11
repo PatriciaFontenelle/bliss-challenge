@@ -14,8 +14,8 @@
   gap: 10px;
 }
 
-.clear-search-btn-mobile {
-  display: none;
+.clear-search-btn {
+  width: max-content;
 }
 
 .list-page-toolbar-right {
@@ -33,14 +33,6 @@
     flex-direction: column;
     gap: 10px;
     margin-bottom: 10px;
-  }
-
-  .clear-search-btn-desktop {
-    display: none;
-  }
-
-  .clear-search-btn-mobile {
-    display: block;
   }
 
   .list-page-toolbar-right {
